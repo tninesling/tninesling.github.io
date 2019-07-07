@@ -29013,8 +29013,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _VerticalFlex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VerticalFlex */ "./src/components/VerticalFlex.js");
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  font-family: QuickSand, sans-serif;\n  align-self: center;\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  background: white;\n  color: black;\n  padding: 10px 20px;\n  border-radius: 3px;\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  color: blue;\n"]);
+  var data = _taggedTemplateLiteral(["\n  align-self: center;\n  width: fit-content;\n  max-width: 1200px;\n  padding: 1rem;\n  position: relative;\n  background: linear-gradient(to bottom, #eee6ff, #bb99ff);\n  padding: 3px;\n  border-radius: 5px;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -29027,10 +29048,13 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-var StyledHeading = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].h2(_templateObject());
+
+var GradientBorderWrap = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject());
+var GradientBorderContents = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject2());
+var StyledHeading = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].h2(_templateObject3());
 
 var AboutMe = function AboutMe() {
-  return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](StyledHeading, null, "A bit about me:"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, "I'm a full-stack software engineer currently based in Boston"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, "I primarily stick to back-end work, but I pitch in with some JavaScript and CSS now and again"));
+  return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_VerticalFlex__WEBPACK_IMPORTED_MODULE_2__["default"], null, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](GradientBorderWrap, null, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](GradientBorderContents, null, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](StyledHeading, null, "A bit about me:"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, "I'm a full-stack software engineer, currently based in Boston. I primarily stick to back-end work, but I pitch in with some JavaScript and CSS now and again"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, "I attended Hofstra University in NY to get a B.S. in Computer Science and Math. While there, I had several great opportunities including a math research project which ended up taking me to France and Germany for conferences. I also spent a semester at the Budapest Semesters in Mathematics study abroad program where I struggled through math with some amazing people."))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (AboutMe);
@@ -29051,7 +29075,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _AboutMe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AboutMe */ "./src/components/AboutMe.js");
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  font-family: Quicksand, sans-serif;\n"]);
+  var data = _taggedTemplateLiteral(["\n  font-family: Quicksand, sans-serif;\n  align-self: center;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -29068,10 +29092,53 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 var StyledHeading = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].h1(_templateObject());
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](StyledHeading, null, "Hey, I'm Taylor!"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_AboutMe__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    style: {
+      minHeight: '100vh',
+      width: '100vw',
+      display: 'flex',
+      flexDirection: 'column'
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](StyledHeading, null, "Hey, I'm Taylor!"), react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_AboutMe__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", {
+    style: {
+      marginTop: '30px',
+      alignSelf: 'center'
+    }
+  }, "More coming soon...."));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./src/components/VerticalFlex.js":
+/*!****************************************!*\
+  !*** ./src/components/VerticalFlex.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+
+var VerticalFlex = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject());
+/* harmony default export */ __webpack_exports__["default"] = (VerticalFlex);
 
 /***/ }),
 
