@@ -1,0 +1,41 @@
+body {
+    background: #423942;
+    margin: 0;
+    font-family: 'Comfortaa', cursive;
+    color: white;
+    font-size: 40px;
+}
+
+#block1 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 200px;
+}
+
+#block1 > * {
+    margin: 50px;
+    max-width: 500px;
+}
+
+.desk > svg {
+    width: 500px;
+    height: 500px;
+}
+
+g#steam > line {
+    stroke-dasharray: 6px 14.94px;
+    stroke-dashoffset: 20.94px;
+    animation: march 5s linear infinite;
+}
+
+g#steam > line:nth-child(2n) {
+    stroke-dasharray: 12px 8.94px;
+}
+
+@keyframes march {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
