@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "build-watch": "webpack --watch",
+    "watch": "webpack --watch",
     "lint": "eslint ./src --ext .ts,.tsx"
   },
   "repository": {
@@ -19,12 +19,14 @@
   },
   "homepage": "https://github.com/tninesling/tninesling.github.io#readme",
   "devDependencies": {
+    "@types/lodash": "^4.14.149",
     "@types/node": "^13.7.4",
     "@types/react": "^16.9.21",
     "@types/react-dom": "^16.9.5",
     "@types/rebass": "^4.0.4",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
+    "copy-webpack-plugin": "^5.1.1",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
@@ -38,6 +40,7 @@
   },
   "dependencies": {
     "emotion-theming": "^10.0.27",
+    "lodash": "^4.17.15",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "rebass": "^4.0.7"
