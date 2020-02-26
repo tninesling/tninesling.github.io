@@ -3,6 +3,7 @@ import { Box, Flex } from 'rebass';
 import { ThemeProvider } from 'emotion-theming';
 import debounce from 'lodash/debounce';
 import theme from '../themes/theme';
+import Header from './Header';
 import Desk from '../vectors/Desk';
 import Skyline from '../vectors/Skyline';
 import Bricks1 from '../vectors/Bricks1';
@@ -60,10 +61,8 @@ const App = () => {
     maxWait: 1000,
   });
 
-  const getWindowClipPath = () =>
-    isLeftPerspective ? leftWindowClipPath : rightWindowClipPath;
-  const getWindowTransform = () =>
-    isLeftPerspective ? leftWindowTransform : rightWindowTransform;
+  const getWindowClipPath = () => (isLeftPerspective ? leftWindowClipPath : rightWindowClipPath);
+  const getWindowTransform = () => (isLeftPerspective ? leftWindowTransform : rightWindowTransform);
   const getMiddlegroundTransform = () =>
     isLeftPerspective ? leftMiddlegroundTransform : rightMiddlegroundTransform;
   const getForegroundTransform = () =>
@@ -71,6 +70,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Header />
       <Flex
         width="100%"
         minHeight="100vh"
@@ -80,12 +80,7 @@ const App = () => {
         flexDirection="column"
         alignItems="center"
       >
-        <Flex
-          width="100%"
-          maxWidth={maxWidth}
-          justifyContent="space-evenly"
-          sx={{ zIndex: 1 }}
-        >
+        <Flex width="100%" maxWidth={maxWidth} justifyContent="space-evenly" sx={{ zIndex: 1 }}>
           <Box
             backgroundColor="#1d1d3d"
             padding="40px 80px 0 80px"
@@ -121,12 +116,7 @@ const App = () => {
             <Bricks2 />
           </Box>
         </Flex>
-        <Flex
-          width="100%"
-          maxWidth={maxWidth}
-          justifyContent="space-evenly"
-          alignItems="center"
-        >
+        <Flex width="100%" maxWidth={maxWidth} justifyContent="space-evenly" alignItems="center">
           <Box
             sx={{
               transform: getMiddlegroundTransform(),
