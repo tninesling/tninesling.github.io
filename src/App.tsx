@@ -63,11 +63,11 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Flex
-        width="100vw"
-        height="100vh"
-        overflow="hidden"
+        width="100%"
+        minHeight="100vh"
         backgroundColor="#5252ad"
         paddingTop="100px"
+        overflow="hidden"
         flexDirection="column"
         alignItems="center"
       >
@@ -82,7 +82,7 @@ const App = () => {
               transition: `${clipPathTransition}, ${transformTransition}`,
               flexShrink: '0',
             }}
-            onMouseMove={({ movementX }) => handleMouseMoveDebounced(movementX)}
+            onMouseMove={(event: { movementX: number }) => handleMouseMoveDebounced(event.movementX)}
           >
             <Skyline />
           </Box>
@@ -105,17 +105,7 @@ const App = () => {
             <Bricks2 />
           </Box>
         </Flex>
-        <Flex
-          width="100%"
-          maxWidth={maxWidth}
-          justifyContent="space-evenly"
-          alignItems="center"
-          sx={{
-            zIndex: 0,
-            position: 'relative',
-            bottom: '200px', // TODO: Fix overlap with window on small screens
-          }}
-        >
+        <Flex width="100%" maxWidth={maxWidth} justifyContent="space-evenly" alignItems="center">
           <Box
             sx={{
               transform: getMiddlegroundTransform(),
