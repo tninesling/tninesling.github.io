@@ -1,15 +1,23 @@
+import colors from './colors';
+
 const theme = {
   colors: {
-    primaryBackgroundColor: '#586A87',
-    textColor: '#FFFFFF',
+    primaryBackgroundColor: colors.lightPurple,
+    secondaryBackgroundColor: colors.darkPurple,
+    textColor: colors.white,
+    footerBackgroundColor: colors.darkPurple,
   },
   fonts: {
-    body: 'system-ui, sans-serif',
+    body: '"Comfortaa", cursive',
     heading: '"Comfortaa", cursive',
   },
   text: {
     heading: {
       fontFamily: 'heading',
+    },
+    body: {
+      fontFamily: 'body',
+      color: 'textColor',
     },
   },
 };

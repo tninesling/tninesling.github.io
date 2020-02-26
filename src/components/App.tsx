@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Box, Flex } from 'rebass';
 import { ThemeProvider } from 'emotion-theming';
 import debounce from 'lodash/debounce';
-import theme from './themes/theme';
-import Desk from './vectors/Desk';
-import Skyline from './vectors/Skyline';
-import Bricks1 from './vectors/Bricks1';
-import Bricks2 from './vectors/Bricks2';
-import Bricks3 from './vectors/Bricks3';
+import theme from '../themes/theme';
+import Desk from '../vectors/Desk';
+import Skyline from '../vectors/Skyline';
+import Bricks1 from '../vectors/Bricks1';
+import Bricks2 from '../vectors/Bricks2';
+import Bricks3 from '../vectors/Bricks3';
+import Footer from './Footer';
 
 const transitionTiming = '1s';
 const clipPathTransition = `clip-path ${transitionTiming}`;
@@ -44,7 +45,8 @@ const App = () => {
     const movedLeft = !movedRight;
     const movedRightWhileInLeftPerspective = isLeftPerspective && movedRight;
     const movedLeftWhileInRightPerspective = !isLeftPerspective && movedLeft;
-    const perspectiveShouldChange = movedRightWhileInLeftPerspective || movedLeftWhileInRightPerspective;
+    const perspectiveShouldChange =
+      movedRightWhileInLeftPerspective || movedLeftWhileInRightPerspective;
     if (perspectiveShouldChange) {
       setIsLeftPerspective(movementX < 0);
     }
@@ -53,25 +55,37 @@ const App = () => {
   // The mousemove event is a stream, which means any onMouseMove handler will be invoked
   // many times. Debounce pools many actions in succession and takes one, so even if there
   // are many mousemove events, the handler will only be invoked with the last one.
-  const handleMouseMoveDebounced = debounce(handleMouseMove, 10, { leading: true, maxWait: 1000 });
+  const handleMouseMoveDebounced = debounce(handleMouseMove, 10, {
+    leading: true,
+    maxWait: 1000,
+  });
 
-  const getWindowClipPath = () => (isLeftPerspective ? leftWindowClipPath : rightWindowClipPath);
-  const getWindowTransform = () => (isLeftPerspective ? leftWindowTransform : rightWindowTransform);
-  const getMiddlegroundTransform = () => (isLeftPerspective ? leftMiddlegroundTransform : rightMiddlegroundTransform);
-  const getForegroundTransform = () => (isLeftPerspective ? leftForegroundTransform : rightForegroundTransform);
+  const getWindowClipPath = () =>
+    isLeftPerspective ? leftWindowClipPath : rightWindowClipPath;
+  const getWindowTransform = () =>
+    isLeftPerspective ? leftWindowTransform : rightWindowTransform;
+  const getMiddlegroundTransform = () =>
+    isLeftPerspective ? leftMiddlegroundTransform : rightMiddlegroundTransform;
+  const getForegroundTransform = () =>
+    isLeftPerspective ? leftForegroundTransform : rightForegroundTransform;
 
   return (
     <ThemeProvider theme={theme}>
       <Flex
         width="100%"
         minHeight="100vh"
-        backgroundColor="#5252ad"
+        backgroundColor="primaryBackgroundColor"
         paddingTop="100px"
         overflow="hidden"
         flexDirection="column"
         alignItems="center"
       >
-        <Flex width="100%" maxWidth={maxWidth} justifyContent="space-evenly" sx={{ zIndex: 1 }}>
+        <Flex
+          width="100%"
+          maxWidth={maxWidth}
+          justifyContent="space-evenly"
+          sx={{ zIndex: 1 }}
+        >
           <Box
             backgroundColor="#1d1d3d"
             padding="40px 80px 0 80px"
@@ -82,7 +96,9 @@ const App = () => {
               transition: `${clipPathTransition}, ${transformTransition}`,
               flexShrink: '0',
             }}
-            onMouseMove={(event: { movementX: number }) => handleMouseMoveDebounced(event.movementX)}
+            onMouseMove={(event: { movementX: number }) =>
+              handleMouseMoveDebounced(event.movementX)
+            }
           >
             <Skyline />
           </Box>
@@ -105,7 +121,12 @@ const App = () => {
             <Bricks2 />
           </Box>
         </Flex>
-        <Flex width="100%" maxWidth={maxWidth} justifyContent="space-evenly" alignItems="center">
+        <Flex
+          width="100%"
+          maxWidth={maxWidth}
+          justifyContent="space-evenly"
+          alignItems="center"
+        >
           <Box
             sx={{
               transform: getMiddlegroundTransform(),
@@ -124,6 +145,7 @@ const App = () => {
           </Box>
         </Flex>
       </Flex>
+      <Footer />
     </ThemeProvider>
   );
 };
