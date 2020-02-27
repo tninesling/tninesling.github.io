@@ -7,9 +7,11 @@ const Footer = () => (
     <Text variant="body" sx={{ flexGrow: 1 }}>
       Made with ❤ in Boston
     </Text>
-    <Link href="https://github.com/tninesling">
-      <Octocat />
-    </Link>
+    <address>
+      <Link href="https://github.com/tninesling">
+        <Octocat />
+      </Link>
+    </address>
   </Flex>
 );
 

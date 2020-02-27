@@ -20,17 +20,12 @@ const maxWidth = '2000px'; // Animations look better when you can see them relat
 // by revealing different parts of the underlying vector as if it
 // were in a layer behind everything else.
 const leftWindowClipPath = 'inset(0 140px 20px 20px round 50px)';
-// Calculation for window transform: (change-in-clip-path / 2) - middleground-transform
-// This will make the window slide the same distance as rest of middleground while
-// offsetting the movement from the clip-path transition.
-const leftWindowTransform = 'translateX(20px)';
-const leftMiddlegroundTransform = 'translateX(-40px)';
-const leftForegroundTransform = 'translateX(-80px)';
+// Calculation for window transform: (change-in-clip-path / 2)
+// This will offset the movement from the clip-path transition.
+const leftWindowTransform = 'translateX(60px)';
 
 const rightWindowClipPath = 'inset(0 20px 20px 140px round 50px)';
-const rightWindowTransform = 'translateX(-20px)';
-const rightMiddlegroundTransform = 'translateX(40px)';
-const rightForegroundTransform = 'translateX(80px)';
+const rightWindowTransform = 'translateX(-60px)';
 
 const App = () => {
   const [isLeftPerspective, setIsLeftPerspective] = useState(true);
@@ -63,10 +58,6 @@ const App = () => {
 
   const getWindowClipPath = () => (isLeftPerspective ? leftWindowClipPath : rightWindowClipPath);
   const getWindowTransform = () => (isLeftPerspective ? leftWindowTransform : rightWindowTransform);
-  const getMiddlegroundTransform = () =>
-    isLeftPerspective ? leftMiddlegroundTransform : rightMiddlegroundTransform;
-  const getForegroundTransform = () =>
-    isLeftPerspective ? leftForegroundTransform : rightForegroundTransform;
 
   return (
     <ThemeProvider theme={theme}>
@@ -82,7 +73,7 @@ const App = () => {
       >
         <Flex width="100%" maxWidth={maxWidth} justifyContent="space-evenly" sx={{ zIndex: 1 }}>
           <Box
-            backgroundColor="#1d1d3d"
+            backgroundColor="secondaryBackgroundColor"
             padding="40px 80px 0 80px"
             height="fit-content"
             sx={{
@@ -97,42 +88,14 @@ const App = () => {
           >
             <Skyline />
           </Box>
-          <Box
-            sx={{
-              transform: getMiddlegroundTransform(),
-              transition: transformTransition,
-            }}
-          >
-            <Bricks1 />
-          </Box>
-
-          <Box
-            alignSelf="center"
-            sx={{
-              transform: getMiddlegroundTransform(),
-              transition: transformTransition,
-            }}
-          >
+          <Bricks1 />
+          <Box alignSelf="center">
             <Bricks2 />
           </Box>
         </Flex>
         <Flex width="100%" maxWidth={maxWidth} justifyContent="space-evenly" alignItems="center">
-          <Box
-            sx={{
-              transform: getMiddlegroundTransform(),
-              transition: transformTransition,
-            }}
-          >
-            <Bricks3 />
-          </Box>
-          <Box
-            sx={{
-              transform: getForegroundTransform(),
-              transition: 'transform 1s',
-            }}
-          >
-            <Desk />
-          </Box>
+          <Bricks3 />
+          <Desk />
         </Flex>
       </Flex>
       <Footer />
