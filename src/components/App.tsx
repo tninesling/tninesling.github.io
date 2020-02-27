@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Flex } from 'rebass';
 import { ThemeProvider } from 'emotion-theming';
 import debounce from 'lodash/debounce';
-import theme from '../themes/theme';
+import theme from '../themes/nightTheme';
 import Header from './Header';
 import Desk from '../vectors/Desk';
 import Skyline from '../vectors/Skyline';

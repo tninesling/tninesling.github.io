@@ -1,12 +1,6 @@
-import colors from './colors';
+import { Theme } from './themeTypes';
 
-const theme = {
-  colors: {
-    primaryBackgroundColor: colors.lightPurple,
-    secondaryBackgroundColor: colors.darkPurple,
-    textColor: colors.white,
-    footerBackgroundColor: colors.darkPurple,
-  },
+const theme: Omit<Theme, 'colors'> = {
   fonts: {
     body: '"Comfortaa", cursive',
     heading: '"Comfortaa", cursive',
