@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Box, Flex } from 'rebass';
 import { ThemeProvider } from 'emotion-theming';
 import debounce from 'lodash/debounce';
+import Hammer from 'hammerjs';
 import theme from '../themes/theme';
 import Header from './Header';
 import Desk from '../vectors/Desk';
@@ -28,6 +29,7 @@ const rightWindowClipPath = 'inset(0 20px 20px 140px round 50px)';
 const rightWindowTransform = 'translateX(-60px)';
 
 const App = () => {
+  const windowRef = useRef<HTMLDivElement>(null);
   const [isLeftPerspective, setIsLeftPerspective] = useState(true);
 
   // Moving the mouse left shifts perspective so it is as if you are viewing from the right.
@@ -36,7 +38,7 @@ const App = () => {
   // of `movementX` needs to be cached (by destructuring it when passed to
   // `onMouseMove`). The caching prevents access of nullified fields on
   // React's pooled synthetic event when this function is debounced.
-  const handleMouseMove = (movementX: number) => {
+  const setPerspectiveByXMovement = (movementX: number) => {
     const movedRight = movementX > 0;
     const movedLeft = !movedRight;
     const movedRightWhileInLeftPerspective = isLeftPerspective && movedRight;
@@ -48,10 +50,20 @@ const App = () => {
     }
   };
 
+  useEffect(() => {
+    const manager = new Hammer.Manager(windowRef.current);
+    const swipe = new Hammer.Swipe();
+    manager.add(swipe);
+
+    manager.on('swipe', event => {
+      setPerspectiveByXMovement(-1 * event.deltaX);
+    });
+  }, [windowRef.current]);
+
   // The mousemove event is a stream, which means any onMouseMove handler will be invoked
   // many times. Debounce pools many actions in succession and takes one, so even if there
   // are many mousemove events, the handler will only be invoked with the last one.
-  const handleMouseMoveDebounced = debounce(handleMouseMove, 10, {
+  const setPerspectiveByXMovementDebounced = debounce(setPerspectiveByXMovement, 10, {
     leading: true,
     maxWait: 1000,
   });
@@ -83,8 +95,9 @@ const App = () => {
               flexShrink: '0',
             }}
             onMouseMove={(event: { movementX: number }) =>
-              handleMouseMoveDebounced(event.movementX)
+              setPerspectiveByXMovementDebounced(event.movementX)
             }
+            ref={windowRef}
           >
             <Skyline />
           </Box>
