@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Flex } from 'rebass';
 import { ThemeProvider } from 'emotion-theming';
-import debounce from 'lodash/debounce';
+import throttle from 'lodash/throttle';
 import Hammer from 'hammerjs';
 import theme from '../themes/theme';
 import Header from './Header';
@@ -12,21 +12,8 @@ import Bricks2 from '../vectors/Bricks2';
 import Bricks3 from '../vectors/Bricks3';
 import Footer from './Footer';
 
-const transitionTiming = '1s';
-const clipPathTransition = `clip-path ${transitionTiming}`;
-const transformTransition = `transform ${transitionTiming}`;
-const maxWidth = '2000px'; // Animations look better when you can see them relative to each other
-
-// Manipulating clip-path here mimics the rectangle being a window
-// by revealing different parts of the underlying vector as if it
-// were in a layer behind everything else.
-const leftWindowClipPath = 'inset(0 140px 20px 20px round 50px)';
-// Calculation for window transform: (change-in-clip-path / 2)
-// This will offset the movement from the clip-path transition.
-const leftWindowTransform = 'translateX(60px)';
-
-const rightWindowClipPath = 'inset(0 20px 20px 140px round 50px)';
-const rightWindowTransform = 'translateX(-60px)';
+// Animations look better when you can see them relative to each other
+const maxWidth = '2000px';
 
 const App = () => {
   const windowRef = useRef<HTMLDivElement>(null);
@@ -61,15 +48,20 @@ const App = () => {
   }, [windowRef.current]);
 
   // The mousemove event is a stream, which means any onMouseMove handler will be invoked
-  // many times. Debounce pools many actions in succession and takes one, so even if there
+  // many times. Throttle pools many actions in succession and takes one, so even if there
   // are many mousemove events, the handler will only be invoked with the last one.
-  const setPerspectiveByXMovementDebounced = debounce(setPerspectiveByXMovement, 10, {
-    leading: true,
-    maxWait: 1000,
+  const setPerspectiveByXMovementThrottled = throttle(setPerspectiveByXMovement, 100, {
+    trailing: true,
   });
 
-  const getWindowClipPath = () => (isLeftPerspective ? leftWindowClipPath : rightWindowClipPath);
-  const getWindowTransform = () => (isLeftPerspective ? leftWindowTransform : rightWindowTransform);
+  // Manipulating clip-path here mimics the rectangle being a window
+  // by revealing different parts of the underlying vector as if it
+  // were in a layer behind everything else.
+  const getWindowClipPath = () =>
+    isLeftPerspective
+      ? 'inset(0 140px 20px 20px round 50px)'
+      : 'inset(0 20px 20px 140px round 50px)';
+  const getWindowLeftPosition = () => (isLeftPerspective ? '60px' : '-60px');
 
   return (
     <ThemeProvider theme={theme}>
@@ -83,32 +75,51 @@ const App = () => {
         flexDirection="column"
         alignItems="center"
       >
-        <Flex width="100%" maxWidth={maxWidth} justifyContent="space-evenly" sx={{ zIndex: 1 }}>
+        <Flex
+          width="100%"
+          maxWidth={maxWidth}
+          justifyContent="space-evenly"
+          alignItems="flex-end"
+          flexWrap="wrap-reverse"
+        >
           <Box
             backgroundColor="secondaryBackgroundColor"
             padding="40px 80px 0 80px"
             height="fit-content"
             sx={{
+              position: 'relative',
+              left: getWindowLeftPosition(),
               clipPath: getWindowClipPath(),
-              transform: getWindowTransform(),
-              transition: `${clipPathTransition}, ${transformTransition}`,
-              flexShrink: '0',
+              transition: 'clip-path 1s, left 1s',
+              flexShrink: 0,
             }}
             onMouseMove={(event: { movementX: number }) =>
-              setPerspectiveByXMovementDebounced(event.movementX)
+              setPerspectiveByXMovementThrottled(event.movementX)
             }
             ref={windowRef}
           >
             <Skyline />
           </Box>
-          <Bricks1 />
-          <Box alignSelf="center">
+          <Box margin="50px">
+            <Bricks1 />
+          </Box>
+          <Box alignSelf="center" margin="50px">
             <Bricks2 />
           </Box>
         </Flex>
-        <Flex width="100%" maxWidth={maxWidth} justifyContent="space-evenly" alignItems="center">
-          <Bricks3 />
-          <Desk />
+        <Flex
+          width="100%"
+          maxWidth={maxWidth}
+          justifyContent="space-evenly"
+          alignItems="center"
+          flexWrap="wrap"
+        >
+          <Box margin="50px">
+            <Bricks3 />
+          </Box>
+          <Box marginLeft="50px">
+            <Desk />
+          </Box>
         </Flex>
       </Flex>
       <Footer />
