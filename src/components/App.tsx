@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Flex } from 'rebass';
-import { ThemeProvider } from 'emotion-theming';
 import debounce from 'lodash/debounce';
-import theme from '../themes/dayTheme';
+import ContextualThemeProvider from './ContextualThemeProvider';
 import Header from './Header';
 import Desk from '../vectors/Desk';
 import Skyline from '../vectors/Skyline';
@@ -60,7 +59,7 @@ const App = () => {
   const getWindowTransform = () => (isLeftPerspective ? leftWindowTransform : rightWindowTransform);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ContextualThemeProvider>
       <Header />
       <Flex
         width="100%"
@@ -99,7 +98,7 @@ const App = () => {
         </Flex>
       </Flex>
       <Footer />
-    </ThemeProvider>
+    </ContextualThemeProvider>
   );
 };
 
