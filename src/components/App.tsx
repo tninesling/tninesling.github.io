@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Flex } from 'rebass';
 import { ThemeProvider } from 'emotion-theming';
 import debounce from 'lodash/debounce';
-import theme from '../themes/nightTheme';
+import theme from '../themes/dayTheme';
 import Header from './Header';
 import Desk from '../vectors/Desk';
 import Skyline from '../vectors/Skyline';
@@ -73,7 +73,7 @@ const App = () => {
       >
         <Flex width="100%" maxWidth={maxWidth} justifyContent="space-evenly" sx={{ zIndex: 1 }}>
           <Box
-            backgroundColor="secondaryBackgroundColor"
+            backgroundColor="skyColor"
             padding="40px 80px 0 80px"
             height="fit-content"
             sx={{

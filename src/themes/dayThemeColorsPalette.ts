@@ -1,17 +1,18 @@
-import { ColorPalette } from './themeTypes';
+import { ColorPalette } from './types';
 import colors from './colors';
 
-// TODO: Swap these for day theme
 const colorPalette: ColorPalette = {
-  footerBackgroundColor: colors.darkPurple,
-  hancockHighlight: colors.slateLight,
-  hancockShadow: colors.slateMedium,
-  hancockShadowDark: colors.slateDark,
+  deskColor: colors.yellow100,
+  footerBackgroundColor: colors.bronze,
+  hancockHighlight: colors.lightTeal,
+  hancockShadow: colors.mutedDarkTeal,
+  hancockShadowDark: colors.mutedDarkerTeal,
+  moonColor: 'none',
   primaryBackgroundColor: colors.tan,
-  prudentialHighlight: colors.mutedTan,
-  prudentialShadow: colors.brown,
-  secondaryBackgroundColor: colors.darkPurple,
-  skyColor: colors.darkPurple,
+  prudentialHighlight: colors.yellow100,
+  prudentialShadow: colors.bronze,
+  secondaryBackgroundColor: colors.bronze,
+  skyColor: colors.skyBlue,
   textColor: colors.white,
   wallColor: colors.tan,
 };

@@ -16,10 +16,12 @@ export interface Theme {
 }
 
 export interface ColorPalette {
+  deskColor: string;
   footerBackgroundColor: string;
   hancockHighlight: string;
   hancockShadow: string;
   hancockShadowDark: string;
+  moonColor: string;
   primaryBackgroundColor: string;
   prudentialHighlight: string;
   prudentialShadow: string;

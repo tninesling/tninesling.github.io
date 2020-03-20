@@ -1,4 +1,4 @@
-import { Theme } from './themeTypes';
+import { Theme } from './types';
 
 const theme: Omit<Theme, 'colors'> = {
   fonts: {
