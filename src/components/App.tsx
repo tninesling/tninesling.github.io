@@ -58,69 +58,74 @@ const App = () => {
   // were in a layer behind everything else.
   const getWindowClipPath = () =>
     isLeftPerspective
-      ? 'inset(0 140px 20px 20px round 50px)'
-      : 'inset(0 20px 20px 140px round 50px)';
-  const getWindowLeftPosition = () => (isLeftPerspective ? '60px' : '-60px');
+      ? ['inset(0 70px 10px 10px round 50px)', 'inset(0 140px 20px 20px round 50px)']
+      : ['inset(0 10px 10px 70px round 50px)', 'inset(0 20px 20px 140px round 50px)'];
+  const getWindowLeftPosition = () => (isLeftPerspective ? ['30px', '60px'] : ['-30px', '-60px']);
 
   return (
     <ContextualThemeProvider>
       <Header />
-      <Flex
-        width="100%"
-        minHeight="100vh"
-        backgroundColor="primaryBackgroundColor"
-        paddingTop="100px"
-        overflow="hidden"
-        flexDirection="column"
-        alignItems="center"
-      >
+      <main>
         <Flex
           width="100%"
-          maxWidth={maxWidth}
-          justifyContent="space-evenly"
-          alignItems="flex-end"
-          flexWrap="wrap-reverse"
-        >
-          <Box
-            backgroundColor="skyColor"
-            padding="40px 80px 0 80px"
-            height="fit-content"
-            sx={{
-              position: 'relative',
-              left: getWindowLeftPosition(),
-              clipPath: getWindowClipPath(),
-              transition: 'clip-path 1s, left 1s',
-              flexShrink: 0,
-            }}
-            onMouseMove={(event: { movementX: number }) =>
-              setPerspectiveByXMovementThrottled(event.movementX)
-            }
-            ref={windowRef}
-          >
-            <Skyline />
-          </Box>
-          <Box margin="50px">
-            <Bricks1 />
-          </Box>
-          <Box alignSelf="center" margin="50px">
-            <Bricks2 />
-          </Box>
-        </Flex>
-        <Flex
-          width="100%"
-          maxWidth={maxWidth}
-          justifyContent="space-evenly"
+          minHeight="100vh"
+          backgroundColor="primaryBackgroundColor"
+          paddingTop={['40px', '80px']}
+          overflow="hidden"
+          flexDirection="column"
           alignItems="center"
-          flexWrap="wrap"
         >
-          <Box margin="50px">
-            <Bricks3 />
-          </Box>
-          <Box marginLeft="50px">
-            <Desk />
-          </Box>
+          <Flex
+            width="100%"
+            maxWidth={maxWidth}
+            justifyContent="space-evenly"
+            alignItems="flex-end"
+            flexWrap="wrap-reverse"
+          >
+            <Box
+              backgroundColor="skyColor"
+              paddingTop={['20px', '40px']}
+              paddingRight={['40px', '80px']}
+              paddingBottom="0"
+              paddingLeft={['40px', '80px']}
+              height="fit-content"
+              sx={{
+                position: 'relative',
+                left: getWindowLeftPosition(),
+                clipPath: getWindowClipPath(),
+                transition: 'clip-path 1s, left 1s',
+                flexShrink: 0,
+              }}
+              onMouseMove={(event: { movementX: number }) =>
+                setPerspectiveByXMovementThrottled(event.movementX)
+              }
+              ref={windowRef}
+            >
+              <Skyline />
+            </Box>
+            <Box margin="50px">
+              <Bricks1 />
+            </Box>
+            <Box alignSelf="center" margin="50px">
+              <Bricks2 />
+            </Box>
+          </Flex>
+          <Flex
+            width="100%"
+            maxWidth={maxWidth}
+            justifyContent="space-evenly"
+            alignItems="center"
+            flexWrap="wrap"
+          >
+            <Box margin="50px">
+              <Bricks3 />
+            </Box>
+            <Box marginLeft="50px">
+              <Desk />
+            </Box>
+          </Flex>
         </Flex>
-      </Flex>
+      </main>
       <Footer />
     </ContextualThemeProvider>
   );

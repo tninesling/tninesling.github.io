@@ -8,6 +8,8 @@ const Desk = () => {
 
   return (
     <Box
+      width={['461px', '922px']}
+      height={['328.5px', '657px']}
       sx={{
         '@keyframes march': {
           to: {
@@ -24,7 +26,7 @@ const Desk = () => {
         },
       }}
     >
-      <svg width="922px" height="657px" viewBox="0 0 922 657.11">
+      <svg viewBox="0 0 922 657.11">
         <defs>
           <radialGradient
             id="radial-gradient"

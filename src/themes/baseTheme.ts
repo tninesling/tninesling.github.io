@@ -1,6 +1,7 @@
 import { Theme } from './types';
 
 const theme: Omit<Theme, 'colors'> = {
+  breakpoints: ['1000px'],
   fonts: {
     body: '"Comfortaa", cursive',
     heading: '"Comfortaa", cursive',

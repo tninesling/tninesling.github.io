@@ -1,4 +1,5 @@
 export interface Theme {
+  breakpoints: Array<string>;
   colors: ColorPalette;
   fonts: {
     body: string;
