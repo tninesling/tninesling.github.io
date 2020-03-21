@@ -4,7 +4,7 @@ import { Box } from 'rebass';
 const Bricks = () => (
   <Box width={['95.5px', '191px']} height={['43px', '86px']}>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 191.14 86">
-      <g id="Bricks">
+      <g id="Bricks2">
         <g>
           <polyline
             points="132 44 132 24.5 189.64 24.5"

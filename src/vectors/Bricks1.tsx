@@ -4,7 +4,7 @@ import { Box } from 'rebass';
 const Bricks = () => (
   <Box width={['73.5px', '147px']} height={['41.5px', '83px']}>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 147.36 83">
-      <g id="Bricks">
+      <g id="Bricks1">
         <g>
           <line
             x1="65.99"
